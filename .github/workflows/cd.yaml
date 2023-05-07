@@ -1,0 +1,10 @@
+name: Create release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@main
