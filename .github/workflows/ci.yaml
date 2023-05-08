@@ -4,16 +4,11 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - '!master'
 
 jobs:
   app-ci:
-    runs-on: ubuntu-latest
-    steps:
-      - name: java-ci
-        uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
+    name: java-ci
+    uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
 
           #      - name: build-tag-publish-docker-image
           #        uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main                          
