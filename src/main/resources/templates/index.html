@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+    <div id="review-div">
+        <h1 class="content">
+            <label for="review-field" class="content">Review Form</label>
+        </h1>
+        <textarea rows="5" cols="50" name="review" form="review-form" placeholder="Write your review here..." class="content" id="review-field" required>[[${review} ?: '']]</textarea>
+        <form class="content" id="review-form">
+            <input type="submit" value="Submit" formmethod="post" formaction="/" id="submit-button">
+        </form>
+        <div class="content" th:switch="${sentiment}">
+            <p class="content sentiment sentiment-error" th:case="'-1'">Error!</p>
+            <p class="content sentiment" th:case="'0'">Sentiment: &#128557</p>
+            <p class="content sentiment" th:case="'1'">Sentiment: &#128515</p>
+        </div>
+    </div>
+</body>
+</html>
