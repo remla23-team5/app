@@ -1,5 +1,5 @@
 # app
----
+
 ## Instructions for running this project
 
 Clone this repository and execute the following commands in its root directory:
