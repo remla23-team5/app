@@ -10,6 +10,6 @@ jobs:
     uses: remla23-team5/cicd/.github/workflows/release.yaml@main
   publish:
     needs: release
-    uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@0.0.3
+    uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main
     with:
       image_name: ${{ github.repository }}
