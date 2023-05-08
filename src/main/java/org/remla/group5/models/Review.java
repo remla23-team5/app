@@ -1,3 +1,3 @@
-package remla.group23.app.models;
+package org.remla.group5.models;
 
 public record Review(String content) {}

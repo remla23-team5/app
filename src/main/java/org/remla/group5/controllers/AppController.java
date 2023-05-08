@@ -1,4 +1,4 @@
-package remla.group23.app.controllers;
+package org.remla.group5.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import remla.group23.app.models.Review;
+import org.remla.group5.models.Review;
 
 import java.io.IOException;
 import java.util.Arrays;

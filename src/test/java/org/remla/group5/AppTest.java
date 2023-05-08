@@ -1,4 +1,4 @@
-package remla.group23.app;
+package org.remla.group5;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
