@@ -9,5 +9,13 @@ on:
       - '!master'
 
 jobs:
-  build:
-    uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
+  app-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: java-ci
+        uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
+
+      - name: build-tag-publish-docker-image
+        uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main                          
+        with:                                                                                        
+          IMAGE_NAME: "remla23-team5/app"  
