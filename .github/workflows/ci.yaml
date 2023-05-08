@@ -1,0 +1,13 @@
+name: Java CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - '!master'
+
+jobs:
+  build:
+    uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
