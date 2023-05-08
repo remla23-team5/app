@@ -30,7 +30,8 @@ public class AppController {
         map.put("review", review.content());
 
         HttpEntity<Map<String, String>> request = new HttpEntity<>(map, headers);
-        ResponseEntity<String> response = new RestTemplate().postForEntity("http://localhost:8080/predict", request, String.class);
+        String modelServiceUrl = System.getenv("model_service_url");
+        ResponseEntity<String> response = new RestTemplate().postForEntity(modelServiceUrl, request, String.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
             ObjectMapper objectMapper = new ObjectMapper();
