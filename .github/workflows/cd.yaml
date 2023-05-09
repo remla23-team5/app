@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: echo
         run: |
-          echo "[version_tag]: ${{ inputs.version }}"
+          echo "[version_tag]: ${{ needs.release.outputs.version_tag }}"
       # - name: publish
       #   uses: ./.github/workflows/publish-docker.yaml@main
       #   with:
