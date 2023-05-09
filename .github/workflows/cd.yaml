@@ -9,16 +9,10 @@ on:
 
 jobs:
   release:
-    uses: ./.github/workflows/release.yaml
-  echo:
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@test
+  publish-docker:
     needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo
-        run: |
-          echo "[version_tag]: ${{ needs.release.outputs.version_tag }}"
-      # - name: publish
-      #   uses: ./.github/workflows/publish-docker.yaml@main
-      #   with:
-      #     version_tag: ${{ steps.release.outputs.version_tag }}
-      #     image_name: ${{ github.repository }}
+    uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@test
+    with:
+      version_tag: ${{ needs.release.outputs.version_tag }}
+      image_name: ${{ github.repository }}
