@@ -13,3 +13,4 @@ jobs:
     uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main
     with:
       IMAGE_NAME: ${{ github.repository }}
+      ARTIFACT_NAME: app.jar
