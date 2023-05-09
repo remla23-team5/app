@@ -11,6 +11,7 @@ jobs:
   release:
     uses: remla23-team5/cicd/.github/workflows/release.yaml@main
   echo:
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: echo
