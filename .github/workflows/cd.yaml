@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  SEMVER: $(git describe --tags $(git rev-list --tags --max-count=1))
+
 jobs:
   release:
     uses: remla23-team5/cicd/.github/workflows/release.yaml@main
@@ -13,3 +16,4 @@ jobs:
     uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main
     with:
       IMAGE_NAME: ${{ github.repository }}
+      ARTIFACT_NAME: app.jar:${{ env.SEMVER }}
