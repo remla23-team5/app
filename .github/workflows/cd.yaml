@@ -9,7 +9,7 @@ on:
 
 jobs:
   release:
-    uses: remla23-team5/cicd/.github/workflows/release.yaml@main
+    uses: ./.github/workflows/release.yaml
   echo:
     needs: release
     runs-on: ubuntu-latest
