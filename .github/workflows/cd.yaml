@@ -8,11 +8,11 @@ on:
       - test
 
 jobs:
-  release-and-publish:
+  release:
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@main
+  echo:
     runs-on: ubuntu-latest
     steps:
-      - name: release
-        uses: remla23-team5/cicd/.github/workflows/release.yaml@main
       - name: echo
         run: |
           echo "[version_tag]: ${{ inputs.version }}"
