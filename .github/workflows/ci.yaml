@@ -13,7 +13,7 @@ jobs:
     name: java-ci
     uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
     with:
-      ARTIFACT_NAME: app.jar:${{ env.SEMVER }}
+      ARTIFACT_NAME: app.jar:${env.SEMVER}
 
           #      - name: build-tag-publish-docker-image
           #        uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main                          
