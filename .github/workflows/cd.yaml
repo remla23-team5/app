@@ -10,6 +10,8 @@ jobs:
   release-and-publish:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
       - name: release
         uses: ./.github/workflows/release.yaml@main
       - name: echo
