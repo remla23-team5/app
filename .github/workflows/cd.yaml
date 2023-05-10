@@ -1,4 +1,4 @@
-name: Create release
+name: Continuous Deployment (CD)
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ env:
 jobs:
   create-release:
     name: Create new release
-    uses: remla23-team5/cicd/.github/workflows/release.yaml@test
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@main
   publish-docker:
     name: Publish Docker image
     runs-on: ubuntu-latest
