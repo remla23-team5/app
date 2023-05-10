@@ -48,11 +48,13 @@ jobs:
         run: |
           echo "[version]: ${{ needs.release.outputs.version }}"
           echo "[version_tag]: v${{ needs.release.outputs.version }}"
+          echo "[TREE]: $(tree)"
+          echo "[PWD]: $(pwd)"
+          echo "[TREE]: $(tree -al)"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.0.0
         with:
-          context: .
           push: true
           tags: |
            ${{ env.REGISTRY }}/${{ github.repository }}:latest,
