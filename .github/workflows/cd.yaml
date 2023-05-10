@@ -29,7 +29,7 @@ jobs:
           distribution: 'temurin'
       - name: Update version
         run: |
-          mvn -q versions:set -DnewVersion="${{ needs.release.outputs.version }}"
+          mvn -q versions:set -DnewVersion="${{ needs.create-release.outputs.version }}"
           echo "$(cat pom.xml)"
 
       - name: Build with Maven
@@ -53,5 +53,5 @@ jobs:
           push: true
           tags: |
            ${{ env.REGISTRY }}/${{ github.repository }}:latest,
-           ${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.release.outputs.version }}
+           ${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.create-release.outputs.version }}
           # build-args: ${{ github.workspace }}
