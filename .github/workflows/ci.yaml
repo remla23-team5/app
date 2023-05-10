@@ -4,10 +4,16 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - '!master'
 
 jobs:
-  build:
+  app-ci:
+    name: java-ci
     uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
+    with:
+      ARTIFACT_NAME: app.jar
+        #${{ env.SEMVER }}
+
+          #      - name: build-tag-publish-docker-image
+          #        uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@main                          
+          #        with:                                                                                        
+          #          IMAGE_NAME: "remla23-team5/app"  

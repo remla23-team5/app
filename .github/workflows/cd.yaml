@@ -10,9 +10,15 @@ on:
 jobs:
   release:
     uses: remla23-team5/cicd/.github/workflows/release.yaml@test
-  publish-docker:
+  publish-maven:
     needs: release
+    uses: remla23-team5/cicd/.github/workflows/publish-maven.yaml@test
+    with:
+      version: ${{ needs.release.outputs.version }}}
+  publish-docker:
+    needs: [publish-maven]
     uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@test
     with:
       version: ${{ needs.release.outputs.version }}
       image_name: ${{ github.repository }}
+      artifact_name: ${{ needs.publish-maven.outputs.artifact_name}}
