@@ -10,9 +10,11 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  release:
+  create-release:
+    name: Create new release
     uses: remla23-team5/cicd/.github/workflows/release.yaml@test
-  build-and-publish:
+  publish-docker:
+    name: Publish Docker image
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -43,14 +45,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}  
-
-      - name: echo
-        run: |
-          echo "[version]: ${{ needs.release.outputs.version }}"
-          echo "[version_tag]: v${{ needs.release.outputs.version }}"
-          echo "[TREE]: $(tree)"
-          echo "[PWD]: $(pwd)"
-          echo "[TREE]: $(tree -al)"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.0.0
