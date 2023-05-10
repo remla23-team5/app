@@ -59,4 +59,4 @@ jobs:
           tags: |
            ${{ env.REGISTRY }}/${{ github.repository }}:latest,
            ${{ env.REGISTRY }}/${{ github.repository }}:${{ needs.release.outputs.version }}
-          buildArgs: ${{ github.workspace }}
+          build-args: ${{ github.workspace }}
