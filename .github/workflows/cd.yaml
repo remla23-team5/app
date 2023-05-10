@@ -27,14 +27,13 @@ jobs:
         with:
           java-version: '19'
           distribution: 'temurin'
-      - name: Update version
+      - name: Update app version
         run: |
           mvn -q versions:set -DnewVersion="${{ needs.create-release.outputs.version }}"
-          echo "$(cat pom.xml)"
 
       - name: Build with Maven
         run: |
-          mvn --batch-mode --update-snapshots -s ./maven.xml clean package -DskipTests
+          mvn --batch-mode --update-snapshots -s ./maven-settings.xml clean package -DskipTests
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
