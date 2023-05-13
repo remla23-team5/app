@@ -15,6 +15,6 @@ ENV model_service_url=$model_service_url
 # ENV PATH_TO_JAR=$PATH_TO_JAR
 # COPY --from=build_stage /usr/src/app/target/app-0.0.1-SNAPSHOT.jar app.jar
 
-COPY /target/app-*.jar /app.jar
+COPY ./target/app-*.jar /app.jar
 EXPOSE 8000
 CMD ["java", "-jar", "app.jar"]
