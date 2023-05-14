@@ -31,7 +31,7 @@ public class AppController {
 
         HttpEntity<Map<String, String>> request = new HttpEntity<>(map, headers);
         String modelServiceUrl = System.getenv("model_service_url");
-        ResponseEntity<String> response = new RestTemplate().postForEntity(modelServiceUrl, request, String.class);
+        ResponseEntity<String> response = new RestTemplate().postForEntity((modelServiceUrl == null) ? "http://localhost:8080/predict" : modelServiceUrl, request, String.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -51,6 +51,20 @@ public class AppController {
         model.addAttribute("review", review.content());
         model.addAttribute("sentiment", -1);
 
+        return "index";
+    }
+
+    @PostMapping(path="/agree")
+    public String agreeWithSentiment(@RequestBody Review review) {
+//        Store necessary data for monitoring
+        System.out.println("Agree " + review.content() + " " + review.sentiment());
+        return "index";
+    }
+
+    @PostMapping("/disagree")
+    public String disagreeWithSentiment(@RequestBody Review review) {
+//        Store necessary data for monitoring
+        System.out.println("Disagree " + review.content() + " " + review.sentiment());
         return "index";
     }
 }

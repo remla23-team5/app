@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <title>App</title>
     <link rel="stylesheet" th:href="@{css/style.css}">
+    <script th:src="@{js/script.js}"></script>
 </head>
 <body>
     <div id="review-div">
-        <h1 class="content">
-            <label for="review-field" class="content">Review Form</label>
+        <h1>
+            <label for="review-field">Review Form</label>
         </h1>
-        <textarea rows="5" cols="50" name="review" form="review-form" placeholder="Write your review here..." class="content" id="review-field" required>[[${review} ?: '']]</textarea>
-        <form class="content" id="review-form">
-            <input type="submit" value="Submit" formmethod="post" formaction="/" id="submit-button">
+        <textarea rows="5" cols="50" name="content" form="review-form" placeholder="Write your review here..." id="review-field" required th:disabled="${sentiment != null}">[[${review} ?: '']]</textarea>
+        <form id="review-form" th:classappend="${sentiment == null ? '' : 'hidden'}">
+            <input type="submit" value="Submit" formmethod="post" formaction="/" class="text" id="submit-button" th:disabled="${sentiment != null}">
         </form>
-        <div class="content" th:switch="${sentiment}">
-            <p class="content sentiment sentiment-error" th:case="'-1'">Error!</p>
-            <p class="content sentiment" th:case="'0'">Sentiment: &#128557</p>
-            <p class="content sentiment" th:case="'1'">Sentiment: &#128515</p>
+        <div id="result" th:classappend="${sentiment == null ? 'hidden' : ''}">
+            <div th:switch="${sentiment}">
+                <div th:case="'-1'">
+                    <p class="text error">Error!</p>
+                    <button class="text" th:onclick="skip()">Refresh</button>
+                </div>
+                <p class="text" th:case="'0'">Our model evaluated the sentiment of your review to be: &#128557</p>
+                <p class="text" th:case="'1'">Our model evaluated the sentiment of your review to be: &#128515</p>
+            </div>
+            <div th:classappend="${sentiment == 0 || sentiment == 1 ? '' : 'hidden'}" >
+                <p class="text">Do you agree with this evaluation?</p>
+                <button class="text" th:onclick="'sendAgreement(' + ${sentiment} + ', true)'">Agree</button>
+                <button class="text" th:onclick="'sendAgreement(' + ${sentiment} + ', false)'">Disagree</button>
+                <button class="text" th:onclick="skip()">Skip</button>
+            </div>
         </div>
     </div>
 </body>
