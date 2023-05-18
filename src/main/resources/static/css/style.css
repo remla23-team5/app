@@ -1,13 +1,16 @@
-.content {
-    margin: 0
-}
-
-.sentiment {
-    margin-top: 15px;
+button input p {
     font-size: 15px;
 }
 
-.sentiment-error {
+button {
+    margin: 5px 0 0 0;
+}
+
+:not(button):nth-child(n) {
+    margin: 0;
+}
+
+.error {
     color: red;
 }
 
@@ -23,9 +26,5 @@
 }
 
 #review-field {
-    margin: 15px 0;
-}
-
-#submit-button {
-    font-size: 15px;
+    margin: 10px 0 15px;
 }
