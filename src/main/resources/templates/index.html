@@ -21,10 +21,8 @@
                     <p class="error">Error!</p>
                     <button th:onclick="skip()">Refresh</button>
                 </div>
-                <p th:case="'0'">Our model evaluated the sentiment of your review to be: &#128557</p>
-                <p th:case="'1'">Our model evaluated the sentiment of your review to be: &#128515</p>
-                <p th:case="'2'">Our model (v2) evaluated the sentiment of your review to be: &#128078</p>
-                <p th:case="'3'">Our model (v2) evaluated the sentiment of your review to be: &#128077</p>
+                <p th:case="'0'">Our model (v2) evaluated the sentiment of your review to be: &#128078</p>
+                <p th:case="'1'">Our model (v2) evaluated the sentiment of your review to be: &#128077</p>
             </th:block>
             <div th:if="${sentiment == 0 || sentiment == 1}">
                 <p>Do you agree with this evaluation?</p>
