@@ -25,9 +25,9 @@
                 <p th:case="'1'">Our model evaluated the sentiment of your review to be: &#128515</p>
             </th:block>
             <div th:if="${sentiment == 0 || sentiment == 1}">
-                <p>Do you agree with this evaluation?</p>
-                <button th:onclick="'sendAgreement(' + ${sentiment} + ', true)'">Agree</button>
-                <button th:onclick="'sendAgreement(' + ${sentiment} + ', false)'">Disagree</button>
+                <p>Is this evaluation correct?</p>
+                <button th:onclick="'sendAgreement(' + ${sentiment} + ', true)'">Yes</button>
+                <button th:onclick="'sendAgreement(' + ${sentiment} + ', false)'">No</button>
                 <button th:onclick="skip()">Skip</button>
             </div>
         </div>
