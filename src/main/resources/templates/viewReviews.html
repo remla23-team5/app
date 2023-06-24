@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">
+            <button class="header-back-button" onclick="changeUrl('/view/restaurants')">Back</button>
+            <h1>Reviews for <i th:text="${restaurant.getName()}"></i></h1>
+        </div>
+        <button class="header-add-button" th:attrappend="onclick='changeUrl(\'/add/review/' + ${restaurant.getName()} + '\')'">Add</button>
+    </div>
+    <p th:if="${restaurant.getReviews() == null || restaurant.getReviews().size() == 0}" class="empty-table">There are no reviews for this restaurant in the system.</p>
+    <table th:unless="${restaurant.getReviews() == null || restaurant.getReviews().size() == 0}" class="table">
+        <tr>
+            <th style="width: 70%">Review</th>
+            <th style="width: 15%">Sentiment</th>
+            <th style="width: 15%">Correctness</th>
+        </tr>
+        <tr th:each="review : ${restaurant.getReviews()}">
+            <td th:text="${review.getContent()}"></td>
+            <th:block th:switch="${review.getSentiment()}">
+                <td th:case="null">Unknown</td>
+                <td th:case="true" style="color: green">Positive</td>
+                <td th:case="false" style="color: red">Negative</td>
+            </th:block>
+            <th:block th:switch="${review.getCorrectness()}">
+                <td th:case="null">Unknown</td>
+                <td th:case="true" style="color: green">Correct</td>
+                <td th:case="false" style="color: red">Incorrect</td>
+            </th:block>
+        </tr>
+    </table>
+</body>
+</html>

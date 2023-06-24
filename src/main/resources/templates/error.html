@@ -5,6 +5,6 @@
     <title>Error</title>
 </head>
 <body>
-    <h1>Error: Invalid URL!</h1>
+    <h1 th:text="${errorMessage ?: 'Error: Invalid URL!'}"></h1>
 </body>
 </html>
