@@ -27,8 +27,8 @@
             </th:block>
             <div th:if="${review.getSentiment() != null}">
                 <p>Is this evaluation correct?</p>
-                <button class="review-button" th:attrappend="onclick='sendAgreement(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', true)'">Yes</button>
-                <button class="review-button" th:attrappend="onclick='sendAgreement(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', false)'">No</button>
+                <button class="review-button" th:attrappend="onclick='sendCorrectness(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', true)'">Yes</button>
+                <button class="review-button" th:attrappend="onclick='sendCorrectness(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', false)'">No</button>
                 <button class="review-button" th:attrappend="onclick='changeUrl(\'/view/reviews/' + ${restaurant.getName()} + '\')'">Skip</button>
             </div>
         </div>
