@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -24,12 +25,14 @@ public class ViewEntriesController {
 
     @GetMapping("/restaurants")
     public String viewRestaurants(Model model) {
+        System.out.println(new Date() + " [MY LOG]: view restaurants");
         model.addAttribute("restaurants", restaurantService.getAllRestaurants());
         return "viewRestaurants";
     }
 
     @GetMapping("/reviews/{restaurantName}")
     public String viewReviewsForRestaurant(@PathVariable @NonNull String restaurantName, Model model) {
+        System.out.println(new Date() + " [MY LOG]: view review");
         Optional<Restaurant> restaurant = restaurantService.getRestaurantByName(restaurantName);
 
         if (restaurant.isPresent()) {

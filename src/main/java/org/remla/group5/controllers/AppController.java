@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -22,11 +23,13 @@ public class AppController {
 
     @GetMapping("/")
     public String getHomepage() {
+        System.out.println(new Date() + " [MY LOG]: get homepage");
         return "redirect:/view/restaurants";
     }
 
     @PostMapping(path="/evaluate")
     public String evaluatePrediction(@RequestBody Review review, Model model) {
+        System.out.println(new Date() + " [MY LOG]: evaluate");
         try {
             reviewService.updateReview(review);
         } catch (RuntimeException e) {
@@ -40,6 +43,7 @@ public class AppController {
     @GetMapping(value = "/metrics", produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public String getMetrics() {
+        System.out.println(new Date() + " [MY LOG]: get metrics");
         List<Review> allReviews = reviewService.getAllReviews();
 
         int reviews = allReviews.size();
