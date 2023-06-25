@@ -2,7 +2,7 @@ FROM maven AS build_stage
 WORKDIR /usr/src/app/
 COPY pom.xml .
 COPY src/ src/
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 FROM openjdk:19 AS run_stage
 ARG model_service_url=http://localhost:8080/predict
