@@ -6,7 +6,7 @@ function changeUrl(newUrl) {
     window.location.href = newUrl
 }
 
-function sendCorrectness(id, restaurantName, content, sentiment, correctness) {
+function sendUserFeedback(id, restaurantName, content, sentiment, correctness) {
     fetch("/evaluate", {
         method: "POST",
         headers: {

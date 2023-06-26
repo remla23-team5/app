@@ -19,7 +19,7 @@
         <tr>
             <th style="width: 70%">Review</th>
             <th style="width: 15%">Sentiment</th>
-            <th style="width: 15%">Correctness</th>
+            <th style="width: 15%">User feedback</th>
         </tr>
         <tr th:each="review : ${restaurant.getReviews()}">
             <td th:text="${review.getContent()}"></td>
