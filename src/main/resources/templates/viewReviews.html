@@ -28,7 +28,7 @@
                 <td th:case="true" style="color: green">Positive</td>
                 <td th:case="false" style="color: red">Negative</td>
             </th:block>
-            <th:block th:switch="${review.getCorrectness()}">
+            <th:block th:switch="${review.getUserFeedback()}">
                 <td th:case="null">Unknown</td>
                 <td th:case="true" style="color: green">Correct</td>
                 <td th:case="false" style="color: red">Incorrect</td>

@@ -47,7 +47,7 @@ public class AppController {
     public String getMetrics() {
         System.out.println(LocalDateTime.now() + " [LOG]: getMetrics");
 
-        List<Review> allReviews = reviewService.getAllReviews();
+        List<Review> allReviews = reviewService.getAllReviews().stream().filter(x -> x.getIsExperimental() != null && !x.getIsExperimental()).toList();
 
         int reviews = allReviews.size();
         int truePositives = 0;
@@ -71,8 +71,8 @@ public class AppController {
             } else if(review.getSentiment()) {
                 positiveEvaluations++;
 
-                if (review.getCorrectness() != null) {
-                    if (review.getCorrectness()) {
+                if (review.getUserFeedback() != null) {
+                    if (review.getUserFeedback()) {
                         truePositives++;
                     } else {
                         falsePositives++;
@@ -81,8 +81,8 @@ public class AppController {
             } else {
                 negativeEvaluations++;
 
-                if (review.getCorrectness() != null) {
-                    if (review.getCorrectness()) {
+                if (review.getUserFeedback() != null) {
+                    if (review.getUserFeedback()) {
                         trueNegatives++;
                     } else {
                         falseNegatives++;
