@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title"><h1>Restaurants</h1></div>
+        <button class="header-add-button" onclick="changeUrl('/add/restaurant')">Add</button>
+    </div>
+    <p th:if="${restaurants.size() == 0}" class="empty-table">There are no restaurants in the system.</p>
+    <table th:unless="${restaurants.size() == 0}" class="table">
+        <tr>
+            <th style="width: 70%">Name</th>
+            <th style="width: 30%">Number of reviews</th>
+        </tr>
+        <tr th:each="restaurant : ${restaurants}">
+            <td><a th:attrappend="href='/view/reviews/' + ${restaurant.getName()}" th:text="${restaurant.getName()}"></a></td>
+            <td th:text="${restaurant.getReviews().size()}"></td>
+        </tr>
+    </table>
+</body>
+</html>

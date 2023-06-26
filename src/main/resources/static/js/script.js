@@ -1,23 +1,26 @@
-function sendAgreement(sentiment, agreement) {
-    fetch("/" + ((agreement) ? "agree" : "disagree"), {
+function hideError() {
+    document.getElementById("error").style.display = "none"
+}
+
+function changeUrl(newUrl) {
+    window.location.href = newUrl
+}
+
+function sendCorrectness(id, restaurantName, content, sentiment, correctness) {
+    fetch("/evaluate", {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "content": document.getElementById("review-field").value,
-            "sentiment": sentiment === 1
+            "id": id,
+            "restaurant": {
+                "name": restaurantName
+            },
+            "content": content,
+            "sentiment": sentiment,
+            "correctness": correctness
         })
-    })
-        .then(response => response.text())
-        .then(data => document.write(data))
-}
-
-function skip() {
-    fetch("/", {
-        method: "GET"
-    })
-        .then(response => response.text())
-        .then(data => document.write(data))
+    }).then(_ => changeUrl("/view/reviews/" + restaurantName))
 }

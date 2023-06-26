@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <div id="input-div">
+        <h1>New restaurant</h1>
+        <form id="input-form" method="post" action="/add/restaurant">
+            <label for="input-field">Name</label>
+            <input type='text' id="input-field" name="name" form="input-form" placeholder='Name...' th:value="${previousName} ?: ''" required/>
+            <br>
+            <button onclick="changeUrl('/view/restaurants')">Back</button>
+            <input type="submit" value="Submit" formmethod="post" formaction="/add/restaurant">
+        </form>
+        <p th:if="${previousName != null and previousName == ''}" class="error">The restaurant's name cannot be empty.</p>
+        <p th:if="${previousName != null and previousName != ''}" class="error" th:text="'A restaurant with name \'' + ${previousName} + '\' already exists in the system.'"></p>
+    </div>
+</body>
+</html>

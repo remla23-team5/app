@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <div id="input-div">
+        <h1>
+            <label for="input-field">New review for <i th:text="${restaurant.getName()}"></i></label>
+        </h1>
+        <textarea rows="5" cols="50" id="input-field" name="content" form="input-form" placeholder="Write your review here..." th:disabled="${review != null}" required th:text="${review != null and review.getContent() != null} ? ${review.getContent()} : ''"></textarea>
+        <form id="input-form" method="post" th:attrappend="action='/add/review/' + ${restaurant.getName()}" th:if="${review == null}">
+            <button th:attrappend="onclick='changeUrl(\'/view/reviews/' + ${restaurant.getName()} + '\')'">Back</button>
+            <input type="submit" value="Submit" formmethod="post" th:attrappend="formaction='/add/review/' + ${restaurant.getName()}">
+        </form>
+        <div th:if="${review != null}">
+            <th:block th:switch="${review.getSentiment()}">
+                <div th:case="null">
+                    <p class="error">Error!</p>
+                    <button class="review-button" th:onclick="skip()">Back</button>
+                </div>
+                <p th:case="false">Our model evaluated the sentiment of this review to be: &#128557</p>
+                <p th:case="true">Our model evaluated the sentiment of this review to be: &#128515</p>
+            </th:block>
+            <div th:if="${review.getSentiment() != null}">
+                <p>Is this evaluation correct?</p>
+                <button class="review-button" th:attrappend="onclick='sendCorrectness(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', true)'">Yes</button>
+                <button class="review-button" th:attrappend="onclick='sendCorrectness(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', false)'">No</button>
+                <button class="review-button" th:attrappend="onclick='changeUrl(\'/view/reviews/' + ${restaurant.getName()} + '\')'">Skip</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
