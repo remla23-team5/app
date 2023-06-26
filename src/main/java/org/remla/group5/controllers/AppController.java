@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -23,13 +23,15 @@ public class AppController {
 
     @GetMapping("/")
     public String getHomepage() {
-        System.out.println(new Date() + " [MY LOG]: get homepage");
+        System.out.println(LocalDateTime.now() + " [LOG]: getHomepage");
+
         return "redirect:/view/restaurants";
     }
 
     @PostMapping(path="/evaluate")
     public String evaluatePrediction(@RequestBody Review review, Model model) {
-        System.out.println(new Date() + " [MY LOG]: evaluate");
+        System.out.println(LocalDateTime.now() + " [LOG]: evaluatePrediction");
+
         try {
             reviewService.updateReview(review);
         } catch (RuntimeException e) {
@@ -43,7 +45,8 @@ public class AppController {
     @GetMapping(value = "/metrics", produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public String getMetrics() {
-        System.out.println(new Date() + " [MY LOG]: get metrics");
+        System.out.println(LocalDateTime.now() + " [LOG]: getMetrics");
+
         List<Review> allReviews = reviewService.getAllReviews();
 
         int reviews = allReviews.size();

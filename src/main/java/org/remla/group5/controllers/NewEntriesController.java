@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/add")
@@ -31,13 +35,15 @@ public class NewEntriesController {
 
     @GetMapping("/restaurant")
     public String addRestaurantPage() {
-        System.out.println(new Date() + " [MY LOG]: add restaurant page");
+        System.out.println(LocalDateTime.now() + " [LOG]: addRestaurantPage");
+
         return "addRestaurant";
     }
 
     @PostMapping("/restaurant")
     public String addRestaurant(@ModelAttribute Restaurant restaurant, Model model) {
-        System.out.println(new Date() + " [MY LOG]: add restaurant");
+        System.out.println(LocalDateTime.now() + " [LOG]: addRestaurant");
+
         if (restaurant.getName().isBlank()) {
             model.addAttribute("previousName", "");
             return "addRestaurant";
@@ -55,7 +61,8 @@ public class NewEntriesController {
 
     @GetMapping("/review/{restaurantName}")
     public String addReviewPage(@PathVariable @NonNull String restaurantName, Model model) {
-        System.out.println(new Date() + " [MY LOG]: add review page");
+        System.out.println(LocalDateTime.now() + " [LOG]: addReviewPage");
+
         Optional<Restaurant> restaurant = restaurantService.getRestaurantByName(restaurantName);
 
         if (restaurant.isPresent()) {
@@ -70,7 +77,8 @@ public class NewEntriesController {
 
     @PostMapping("/review/{restaurantName}")
     public String addReview(@PathVariable @NonNull String restaurantName, @ModelAttribute Review review, Model model) {
-        System.out.println(new Date() + " [MY LOG]: add review");
+        System.out.println(LocalDateTime.now() + " [LOG]: addReview");
+
         Optional<Restaurant> restaurant = restaurantService.getRestaurantByName(restaurantName);
 
         if (restaurant.isEmpty()) {
