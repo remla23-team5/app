@@ -16,6 +16,5 @@ jobs:
     uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@update-release-snapshot
     with:
       version: ${{ needs.create-release.outputs.version }}
-      image_name: app
       publish_latest: true
     secrets: inherit
