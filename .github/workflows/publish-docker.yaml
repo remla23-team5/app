@@ -12,6 +12,6 @@ jobs:
           fetch-depth: 0
       - name: Echo release version
         run: |
-          echo "${{ github.ref }}" >> $GITHUB_OUTPUT
+          echo "${{ github.ref }}"
       # - name: Build & Push Docker Image
       #   uses: remla23-team5/cicd/.github/workflows/publish-with-tag.yaml@feature/release-docker
