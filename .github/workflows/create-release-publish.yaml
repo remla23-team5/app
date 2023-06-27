@@ -10,6 +10,20 @@ jobs:
     name: Create new release
     uses: remla23-team5/cicd/.github/workflows/release.yaml@update-release-snapshot
     secrets: inherit
+  update-project-version:
+    runs-on: ubuntu-latest
+    needs: create-release
+    name: Update project version
+    steps:
+    - name: checkout-repository
+      uses: actions/checkout@v3
+    - run: mvn -q versions:set -DnewVersion="${{ needs.create-release.outputs.version }}" -DgenerateBackupPoms=false
+    - name: Commit new version
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update project version in pom.xml
+        branch: ${{ github.ref }}
+        file_pattern: pom.xml
   publish-docker:
     name: Build docker image and publish to registry
     needs: create-release
