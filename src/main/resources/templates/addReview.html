@@ -29,7 +29,7 @@
                 <p>Is this evaluation correct?</p>
                 <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', true, false)'">Yes</button>
                 <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', false, false)'">No</button>
-                <button class="review-button" th:attrappend="onclick='changeUrl(\'/view/reviews/' + ${restaurant.getName()} + '\')'">Skip</button>
+                <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', null, false)'">Skip</button>
             </div>
         </div>
     </div>
