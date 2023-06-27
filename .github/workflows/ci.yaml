@@ -8,6 +8,4 @@ on:
 jobs:
   app-ci:
     name: java-ci
-    uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@main
-    with:
-      ARTIFACT_NAME: app.jar
+    uses: remla23-team5/cicd/.github/workflows/java-ci.yaml@update-release-snapshot
