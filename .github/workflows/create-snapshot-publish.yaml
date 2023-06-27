@@ -16,7 +16,7 @@ jobs:
     needs: create-snapshot-release
     name: Update project version
     steps:
-    - run: mvn -q versions:set -DnewVersion="${{ needs.create-release.outputs.version }}" -DgenerateBackupPoms=false
+    - run: mvn -q versions:set -DnewVersion="${{ needs.create-snapshot-release.outputs.version }}" -DgenerateBackupPoms=false
     - name: Commit new version
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
