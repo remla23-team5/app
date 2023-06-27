@@ -6,7 +6,7 @@ function changeUrl(newUrl) {
     window.location.href = newUrl
 }
 
-function sendUserFeedback(id, restaurantName, content, sentiment, userFeedback, isExperimental) {
+function sendUserFeedback(id, restaurantName, content, sentiment, userFeedback) {
     fetch("/evaluate", {
         method: "POST",
         headers: {
@@ -20,8 +20,7 @@ function sendUserFeedback(id, restaurantName, content, sentiment, userFeedback, 
             },
             "content": content,
             "sentiment": sentiment,
-            "userFeedback": userFeedback,
-            "isExperimental": isExperimental
+            "userFeedback": userFeedback
         })
     }).then(_ => changeUrl("/view/reviews/" + restaurantName))
 }

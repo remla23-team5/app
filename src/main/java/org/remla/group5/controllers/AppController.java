@@ -47,7 +47,7 @@ public class AppController {
     public String getMetrics() {
         System.out.println(LocalDateTime.now() + " [LOG]: getMetrics");
 
-        List<Review> allReviews = reviewService.getAllReviews().stream().filter(x -> x.getIsExperimental() != null && x.getIsExperimental()).toList();
+        List<Review> allReviews = reviewService.getAllReviews();
 
         int reviews = allReviews.size();
         int truePositives = 0;

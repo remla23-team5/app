@@ -27,9 +27,9 @@
             </th:block>
             <div th:if="${review.getSentiment() != null}">
                 <p>Is this evaluation correct?</p>
-                <button class="review-button" style="background-color: green" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', true, true)'">Yes</button>
-                <button class="review-button" style="background-color: red" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', false, true)'">No</button>
-                <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', null, true)'">Skip</button>
+                <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', true)'">Yes</button>
+                <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', false)'">No</button>
+                <button class="review-button" th:attrappend="onclick='sendUserFeedback(' + ${review.getId()} + ', \'' + ${restaurant.getName()} + '\', \'' + ${review.getContent()} + '\', ' + ${review.getSentiment()} + ', null)'">Skip</button>
             </div>
         </div>
     </div>
