@@ -1,6 +1,8 @@
 name: Build docker image and publish to registry
 
-on: [release]
+on: 
+  release:
+    types: [created, published, edited]
 
 jobs:
   publish-docker:
