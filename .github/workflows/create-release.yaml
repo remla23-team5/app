@@ -1,15 +1,21 @@
 name: Tag & Create Release
 
-on: [workflow_dispatch, push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   create-release:
     name: Create new release
-    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     uses: remla23-team5/cicd/.github/workflows/release.yaml@update-release-snapshot
     secrets: inherit
-  create-snapshot-release:
-    name: Create new snapshot release
-    if: github.ref != 'refs/heads/main' && startsWith('snapshot:', ${{ github.event.head_commit.message }})
-    uses: remla23-team5/cicd/.github/workflows/snapshot.yaml@update-release-snapshot
+  publish-docker:
+    name: Build docker image and publish to registry
+    needs: create-release
+    uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@update-release-snapshot
+    with:
+      version: ${{ needs.create-release.outputs.version }}
+      image_name: app
+      publish_latest: true
     secrets: inherit
