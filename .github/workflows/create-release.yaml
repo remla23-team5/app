@@ -10,6 +10,6 @@ jobs:
     secrets: inherit
   create-snapshot-release:
     name: Create new snapshot release
-    if: github.ref != 'refs/heads/main' && startsWith('snapshot:', ${{ github.event.head_commit.message }})
+    if: github.ref != 'refs/heads/main' && startsWith('snapshot:', github.event.head_commit.message)
     uses: remla23-team5/cicd/.github/workflows/snapshot.yaml@update-release-snapshot
     secrets: inherit
