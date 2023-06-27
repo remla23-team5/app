@@ -3,7 +3,7 @@ name: Tag & Create Snapshot Release
 on:
   push:
     branches-ignore:
-      - "main"
+      - main
 
 jobs:
   create-snapshot-release:
