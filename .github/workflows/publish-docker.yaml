@@ -1,0 +1,19 @@
+name: Build docker image and publish to registry
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-docker:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Echo release version
+        run: |
+          echo "${{ github.ref }}"
+      # - name: Build & Push Docker Image
+      #   uses: remla23-team5/cicd/.github/workflows/publish-with-tag.yaml@feature/release-docker
