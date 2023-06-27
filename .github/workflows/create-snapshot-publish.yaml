@@ -1,0 +1,20 @@
+name: Tag & Create Snapshot Release
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  create-snapshot-release:
+    name: Create Snapshot Release
+    if: startsWith('snapshot:', ${{ github.event.head_commit.message }})
+    uses: remla23-team5/cicd/.github/workflows/snapshot.yaml@update-release-snapshot
+    secrets: inherit
+  publish-docker:
+    name: Publish Docker Image
+    needs: create-snapshot-release
+    uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@update-release-snapshot
+    with:
+      version: ${{ needs.create-snapshot-release.outputs.version }}
+    secrets: inherit

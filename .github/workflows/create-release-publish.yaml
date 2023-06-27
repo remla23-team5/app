@@ -1,0 +1,20 @@
+name: Tag & Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-release:
+    name: Create new release
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@update-release-snapshot
+    secrets: inherit
+  publish-docker:
+    name: Build docker image and publish to registry
+    needs: create-release
+    uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@update-release-snapshot
+    with:
+      version: ${{ needs.create-release.outputs.version }}
+      publish_latest: true
+    secrets: inherit
