@@ -7,12 +7,12 @@ on:
 
 jobs:
   create-snapshot-release:
-    name: Create new snapshot release
+    name: Create Snapshot Release
     if: startsWith('snapshot:', ${{ github.event.head_commit.message }})
     uses: remla23-team5/cicd/.github/workflows/snapshot.yaml@update-release-snapshot
     secrets: inherit
   publish-docker:
-    name: Build docker image and publish to registry
+    name: Publish Docker Image
     needs: create-snapshot-release
     uses: remla23-team5/cicd/.github/workflows/publish-docker.yaml@update-release-snapshot
     with:
