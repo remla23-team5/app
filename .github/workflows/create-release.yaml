@@ -12,8 +12,8 @@ jobs:
   create-release:
     name: Create new release
     if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
-    uses: remla23-team5/cicd/.github/workflows/release.yaml@feature/release-docker
+    uses: remla23-team5/cicd/.github/workflows/release.yaml@update-release-snapshot
   create-snapshot-release:
     name: Create new snapshot release
     if: github.ref != 'refs/heads/main' && startsWith('snapshot:', ${{ github.event.head_commit.message }})
-    uses: remla23-team5/cicd/.github/workflows/snapshot.yaml@feature/release-docker
+    uses: remla23-team5/cicd/.github/workflows/snapshot.yaml@update-release-snapshot
