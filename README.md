@@ -24,10 +24,10 @@ The web application exposes six metrics to Prometheus through the `/metrics` end
 - `num_feedbacks`: This counter metric depicts the number of received feedbacks.
 - `model_accuracy`: This gauge metric depicts the accuracy of the model, based on the user feedback.
 - `reviews_of_length`: This histogram metric depicts the number of reviews of different lengths. More concretely, the reviews are split into the following five groups based on their length and this metric depicts the number of reviews in each group:
-- - Reviews that contain less than 10 characters;
-- - Reviews that contain less than 30 characters;
-- - Reviews that contain less than 50 characters;
-- - Reviews that contain less than 100 characters;
-- - Reviews that contain more than 100 characters;
+  - Reviews that contain less than 10 characters;
+  - Reviews that contain less than 30 characters;
+  - Reviews that contain less than 50 characters;
+  - Reviews that contain less than 100 characters;
+  - Reviews that contain more than 100 characters;
 - `num_evaluations_per_sentiment`: This summary metric distinguishes between 3 different 'sentiments' - positive, negative and unsuccessful (a review`s sentiment is marked as 'unsuccessful', if an error occurs during the sentiment evaluation process), and depicts the number of reviews of each sentiment, according to the machine learning model.
 - `num_evaluations_per_type`: This summary metric counts the number of true-positive, true-negative, false-positive and false-negative sentiment evaluations, based on the received user feedback.
