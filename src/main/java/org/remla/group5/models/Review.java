@@ -17,6 +17,8 @@ public class Review {
     private Boolean sentiment;
     @Column
     private Boolean userFeedback;
+    @Column
+    private Boolean isExperimental;
 
     public Long getId() {
         return this.id;
@@ -56,5 +58,13 @@ public class Review {
 
     public void setUserFeedback(Boolean userFeedback) {
         this.userFeedback = userFeedback;
+    }
+
+    public Boolean getIsExperimental() {
+        return this.isExperimental;
+    }
+
+    public void setIsExperimental(Boolean isExperimental) {
+        this.isExperimental = isExperimental;
     }
 }
